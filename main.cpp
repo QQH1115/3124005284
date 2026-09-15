@@ -4,6 +4,7 @@
 #include <map>
 #include <cctype>
 #include <iterator>
+#include <cmath>
 
 using namespace std;
 using ll = long long;
@@ -67,7 +68,24 @@ int main(int argc, char* argv[]) {
     map<string, ll> ori = tokenize(orig);
     map<string, ll> co  = tokenize(cop);
 
+    ll s = 0, s1 = 0, s2 = 0;
 
+    for (const auto& [word, count] : ori) {
+        auto it = co.find(word);
+        if (it != co.end()) {
+            s += count * it->second;
+        }
+        s1 += count * count;
+    }
+
+    for (const auto& [word, count] : co) {
+        s2 += count * count;
+    }
+
+    long double ans = 0;
+    if (s1 != 0 && s2 != 0) {
+        ans = s * 1.0 / (sqrt(s1) * sqrt(s2));
+    }
 
     return 0;
 }
