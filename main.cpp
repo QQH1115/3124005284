@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <cctype>
 #include <iterator>
 #include <cmath>
@@ -21,8 +21,8 @@ string readfile(const string& x) {
     return content;
 }
 
-map<string, ll> tokenize(const string& x) {
-    map<string, ll> collect;
+unordered_map<string, ll> tokenize(const string& x) {
+    unordered_map<string, ll> collect;
     string word;
 
     for (size_t i = 0; i < x.size(); i++) {
@@ -76,8 +76,8 @@ int main(int argc, char* argv[]) {
     string orig = readfile(argv[1]);
     string cop  = readfile(argv[2]);
 
-    map<string, ll> ori = tokenize(orig);
-    map<string, ll> co  = tokenize(cop);
+    unordered_map<string, ll> ori = tokenize(orig);
+    unordered_map<string, ll> co  = tokenize(cop);
 
     ll s = 0, s1 = 0, s2 = 0;
 
