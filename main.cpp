@@ -5,6 +5,7 @@
 #include <cctype>
 #include <iterator>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 using ll = long long;
@@ -56,6 +57,16 @@ map<string, ll> tokenize(const string& x) {
     return collect;
 }
 
+void writefile(const string& x, long double y) {
+    ofstream file(x);
+    if (!file.is_open()) {
+        cerr << "无法写入文件: " << x << endl;
+        return;
+    }
+    file << fixed << setprecision(2) << y << endl;
+    file.close();
+}
+
 int main(int argc, char* argv[]) {
     if (argc != 4) {
         cerr << "用法: " << argv[0] << " <原文> <抄袭版> <结果>" << endl;
@@ -86,6 +97,8 @@ int main(int argc, char* argv[]) {
     if (s1 != 0 && s2 != 0) {
         ans = s * 1.0 / (sqrt(s1) * sqrt(s2));
     }
+
+    writefile(argv[3], ans);
 
     return 0;
 }
